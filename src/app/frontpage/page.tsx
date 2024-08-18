@@ -1,14 +1,17 @@
 import React from "react";
+import Header from "./Header";
+/*  Ancora da impostare!!
+ import MainContent from "./MainContent.tsx";
+ import Footer from "./Footer.tsx";
+ */
 import styles from "./page.module.css";
 
-const lobby = () => {
+const web = () => {
   return (
-    <main className={styles.swagger}>
-      <header>
-        <div className={styles.colors}>swagger</div>
-      </header>
-    </main>
+    <div>
+      <Header />
+    </div>
   );
 };
 
-export default lobby;
+export default web;
