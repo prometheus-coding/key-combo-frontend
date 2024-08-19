@@ -2,6 +2,7 @@
 
 import Header from "./components/Header";
 import Login from "./components/Login";
+import Register from "./components/Register";
 import styled from "styled-components";
 // debugger
 import "./globals.css";
@@ -14,11 +15,18 @@ const BgImg = styled.div`
   height: 100vh;
 `;
 
+const DisplayNone = styled.div`
+  display: none;
+`;
+
 export default function Home() {
   return (
     <BgImg>
       <Header />
-      <Login />
+      <Register />
+      <DisplayNone>
+        <Login />
+      </DisplayNone>
     </BgImg>
   );
 }

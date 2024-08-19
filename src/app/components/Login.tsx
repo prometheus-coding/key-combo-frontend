@@ -4,13 +4,13 @@ import React from "react";
 import styled from "styled-components";
 // debugger
 
-const Swagger = styled.div`
+const Login = styled.div`
   background-color: red;
   height: 200px;
 `;
 
 const Main = () => {
-  return <Swagger>ciao mondo</Swagger>;
+  return <Login>LOGIN!@!!!</Login>;
 };
 
 export default Main;
