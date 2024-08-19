@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "./components/Header";
-import Main from "./components/Main";
+import Login from "./components/Login";
 import styled from "styled-components";
 // debugger
 import "./globals.css";
@@ -16,11 +16,9 @@ const BgImg = styled.div`
 
 export default function Home() {
   return (
-    <main>
-      <BgImg>
-        <Header />
-        <Main />
-      </BgImg>
-    </main>
+    <BgImg>
+      <Header />
+      <Login />
+    </BgImg>
   );
 }
