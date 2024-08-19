@@ -3,17 +3,9 @@
 import React from "react";
 import styled from "styled-components";
 // debugger
-import "./global.css";
 
 const Navbar = styled.nav`
   color: white;
-`;
-const NavbarBackgroundImage = styled.div`
-  background-image: url("/images/wallpapersden.com_happiest-anime-girl-hd-ai-art_1952x1120.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 100vh;
 `;
 
 const NavbarContainer = styled.div`
@@ -49,29 +41,27 @@ const NavbarUserContainer = styled.div`
 const Header = () => {
   return (
     <Navbar>
-      <NavbarBackgroundImage>
-        <NavbarContainer>
-          <NavbarLinks>
-            <div>Home</div>
-            <div>Leaderboard</div>
-            <div>Community</div>
-            <div>Info</div>
-          </NavbarLinks>
-          <NavbarLogoContainer>
-            <img src="" alt="logo" />
-          </NavbarLogoContainer>
-          <NavbarUserContainer>
-            <div>User</div>
-            <div>
-              <img
-                src=""
-                alt="profile"
-                style={{ borderRadius: "50%", width: "40px", height: "40px" }}
-              />
-            </div>
-          </NavbarUserContainer>
-        </NavbarContainer>
-      </NavbarBackgroundImage>
+      <NavbarContainer>
+        <NavbarLinks>
+          <div>Home</div>
+          <div>Leaderboard</div>
+          <div>Community</div>
+          <div>Info</div>
+        </NavbarLinks>
+        <NavbarLogoContainer>
+          <img src="" alt="logo" />
+        </NavbarLogoContainer>
+        <NavbarUserContainer>
+          <div>User</div>
+          <div>
+            <img
+              src=""
+              alt="profile"
+              style={{ borderRadius: "50%", width: "40px", height: "40px" }}
+            />
+          </div>
+        </NavbarUserContainer>
+      </NavbarContainer>
     </Navbar>
   );
 };
