@@ -11,6 +11,10 @@ const RegisterContainer = styled.div`
 `;
 
 // full boxed
+
+//TODO 
+//cercare di utilizzare il minor numero di componenti stylizzati possibile
+//se due input hanno uno styling identico utilizzare lo stesso styling o estendere il componente
 // box title
 const PaddingContainer = styled.div``;
 const TitoloBenvenutoUser = styled.p``;
