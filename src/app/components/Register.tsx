@@ -5,10 +5,12 @@ import styled from "styled-components";
 // debugger
 
 const RegisterContainer = styled.div`
-  background-color: rgba(147, 147, 147, 0.8);
+  background-color: rgba(116, 164, 220, 0.7);
   height: 550px;
   width: 500px;
   margin-top: 150px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 `;
 
 const MarginCentratoRegister = styled.div`
