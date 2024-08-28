@@ -102,7 +102,7 @@ const ButtonRegister = styled.button`
 const Icon = styled.div`
   width: 20px;
   height: 20px;
-  background-color: gray; // Placeholder color
+  background-color: gray; // Placeholder colord
 `;
 
 const Register = () => {
