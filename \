@@ -8,18 +8,14 @@ const RegisterContainer = styled.div`
   background-color: grey;
   height: 450px;
   width: 400px;
-`;
-
-const MarginCentratoRegister = styled.div`
-  margin: 0 auto;
-  width: 250px;
-  height: 100%;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
 `;
+
+const MarginCentratoRegister
 
 // full boxed
 
@@ -45,11 +41,6 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-// form spaziatura
-const InputMiniContainer = styled.div`
-  display: flex;
 `;
 // email
 const IconEmail = styled.div``;
@@ -82,24 +73,10 @@ const CheckBoxNewsletter = styled.input`
 `;
 const ParagrafoNewsletter = styled.p``;
 // button register
-const ButtonRegister = styled.button`
-  margin-top: 20px;
-  background-color: rgba(0, 128, 0, 0.5);
-  color: white;
-  border: 2px solid green;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 15px;
-  height: 35px;
-  width: 180px;
-  cursor: pointer;
-`;
+const ButtonRegister = styled.button``;
 const WordRegister = styled.p``;
 // full boxed
 // scritta se hai gia un account
-const ParagrafoDomandeContainer = styled.div`
-  margin-top: 20px;
-`;
 const ParagrafoDomandaAccount = styled.p``;
 const ParagrafoSignIn = styled.p``;
 // Fullboxed
@@ -120,24 +97,23 @@ const Register = () => {
             <TitoloRegistrazione>Registration</TitoloRegistrazione>
           </TitoloBenvenutoContainer>
           <FormContainer>
-            <InputMiniContainer>
+            <div>
               <IconEmail />
               <InputEmail placeholder="email" />
-            </InputMiniContainer>
-            <InputMiniContainer>
+            </div>
+            <div>
               <IconUsername />
               <InputUsername placeholder="username" />
-            </InputMiniContainer>
-            <InputMiniContainer>
+            </div>
+            <div>
               <IconPassword />
               <InputPassword placeholder="password" />
-              <IconShowPassword />
-            </InputMiniContainer>
-            <InputMiniContainer>
+            </div>
+            <div>
               <IconPassword />
               <InputPasswordConfirm placeholder="confirm password" />
               <IconShowPassword />
-            </InputMiniContainer>
+            </div>
             <CheckBoxContainer>
               <CheckBoxCookie />
               <ParagrafoCookie>
@@ -150,16 +126,17 @@ const Register = () => {
                 Voglio ricevere le newsletter e notifiche sui nuovi post{" "}
               </ParagrafoNewsletter>
             </CheckBoxContainer>
-            <ButtonRegister>
+            <div>
+              <ButtonRegister />
               <WordRegister>Register</WordRegister>
-            </ButtonRegister>
+            </div>
           </FormContainer>
-          <ParagrafoDomandeContainer>
+          <div>
             <ParagrafoDomandaAccount>
               You have already an account?
             </ParagrafoDomandaAccount>
             <ParagrafoSignIn>Sign in </ParagrafoSignIn>
-          </ParagrafoDomandeContainer>
+          </div>
         </PaddingContainer>
         <ParagrafoOath>or Sign Up Using</ParagrafoOath>
         <div>
