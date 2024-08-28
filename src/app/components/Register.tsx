@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // Main container for the registration form
@@ -66,9 +66,7 @@ const InputGroup = styled.div`
 
 // Input field styling
 const InputField = styled.input`
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  background-color: transparent;
 `;
 
 // Checkbox and paragraph container
@@ -106,11 +104,46 @@ const Icon = styled.div`
 `;
 
 const Register = () => {
+  const addOne = () => {
+    getData();
+  };
+
+  const fintoDato = {
+    username: "idwadawd",
+    first_name: "John",
+    last_name: "Doe",
+    email: "sawgger@gmail.com",
+    password: "Password123!",
+  };
+
+  const getData = async () => {
+    const url = "http://localhost:3001/api/v1/auth/local/signup";
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fintoDato),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const json = await response.json();
+      console.log(json);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <RegisterContainer>
       <CenteredContainer>
         <PaddingContainer>
           <TitleContainer>
+            <button onClick={addOne}>sex</button>
             <Text>Welcome User!</Text>
             <Text>Registration</Text>
           </TitleContainer>
