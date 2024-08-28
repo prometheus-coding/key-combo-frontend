@@ -5,9 +5,10 @@ import styled from "styled-components";
 // debugger
 
 const RegisterContainer = styled.div`
-  background-color: grey;
-  height: 450px;
-  width: 400px;
+  background-color: rgba(147, 147, 147, 0.8);
+  height: 550px;
+  width: 500px;
+  margin-top: 150px;
 `;
 
 const MarginCentratoRegister = styled.div`
@@ -45,11 +46,13 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 13px;
 `;
 
 // form spaziatura
 const InputMiniContainer = styled.div`
   display: flex;
+  margin-top: 10px;
 `;
 // email
 const IconEmail = styled.div``;
@@ -83,7 +86,6 @@ const CheckBoxNewsletter = styled.input`
 const ParagrafoNewsletter = styled.p``;
 // button register
 const ButtonRegister = styled.button`
-  margin-top: 20px;
   background-color: rgba(0, 128, 0, 0.5);
   color: white;
   border: 2px solid green;
@@ -97,9 +99,7 @@ const ButtonRegister = styled.button`
 const WordRegister = styled.p``;
 // full boxed
 // scritta se hai gia un account
-const ParagrafoDomandeContainer = styled.div`
-  margin-top: 20px;
-`;
+const ParagrafoDomandeContainer = styled.div``;
 const ParagrafoDomandaAccount = styled.p``;
 const ParagrafoSignIn = styled.p``;
 // Fullboxed
