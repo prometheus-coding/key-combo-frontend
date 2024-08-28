@@ -2,8 +2,8 @@
 
 import React from "react";
 import styled from "styled-components";
-// debugger
 
+// Main container for the registration form
 const RegisterContainer = styled.div`
   background-color: rgba(116, 164, 220, 0.7);
   height: 550px;
@@ -13,36 +13,41 @@ const RegisterContainer = styled.div`
   border-bottom-right-radius: 20px;
 `;
 
-const MarginCentratoRegister = styled.div`
+// Centering container
+const CenteredContainer = styled.div`
   margin: 0 auto;
-  width: 250px;
+  width: 350px;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+
+  .icons_group {
+    display: flex;
+  }
 `;
 
-// full boxed
-
-//TODO
-//cercare di utilizzare il minor numero di componenti stylizzati possibile
-//se due input hanno uno styling identico utilizzare lo stesso styling o estendere il componente
-// box title
+// Padding container to wrap components
 const PaddingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 `;
-const TitoloBenvenutoContainer = styled.div`
+
+// Title container
+const TitleContainer = styled.div`
   display: flex;
   gap: 10px;
 `;
-const TitoloBenvenutoUser = styled.p``;
-const TitoloRegistrazione = styled.p``;
-// form
+
+// Text component
+const Text = styled.p`
+  margin: 0;
+`;
+
+// Form container for input fields and buttons
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -51,42 +56,36 @@ const FormContainer = styled.form`
   gap: 13px;
 `;
 
-// form spaziatura
-const InputMiniContainer = styled.div`
+// Input and icon wrapper
+const InputGroup = styled.div`
   display: flex;
+  align-items: center;
   margin-top: 10px;
+  gap: 5px; // added a gap for spacing between icon and input
 `;
-// email
-const IconEmail = styled.div``;
-const InputEmail = styled.input``;
-//username
-const IconUsername = styled.div``;
-const InputUsername = styled.input``;
-// password
-const IconPassword = styled.div``;
-const InputPassword = styled.input``;
-const InputPasswordConfirm = styled.input``;
-const IconShowPassword = styled.div``;
-// checkbpx cookie
+
+// Input field styling
+const InputField = styled.input`
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+`;
+
+// Checkbox and paragraph container
 const CheckBoxContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
 `;
-const CheckBoxCookie = styled.input`
+
+// Checkbox styling
+const CheckBox = styled.input`
   width: 15px;
   height: 15px;
   cursor: pointer;
 `;
-const ParagrafoCookie = styled.p``;
-// checkboxnewsletter
-const CheckBoxNewsletter = styled.input`
-  width: 15px;
-  height: 15px;
-  cursor: pointer;
-`;
-const ParagrafoNewsletter = styled.p``;
-// button register
+
+// Button styling
 const ButtonRegister = styled.button`
   background-color: rgba(0, 128, 0, 0.5);
   color: white;
@@ -98,78 +97,68 @@ const ButtonRegister = styled.button`
   width: 180px;
   cursor: pointer;
 `;
-const WordRegister = styled.p``;
-// full boxed
-// scritta se hai gia un account
-const ParagrafoDomandeContainer = styled.div``;
-const ParagrafoDomandaAccount = styled.p``;
-const ParagrafoSignIn = styled.p``;
-// Fullboxed
-// scritto se vuoi accedere con un oath
-const ParagrafoOath = styled.p``;
-const IconGitHub = styled.div``;
-const IconGoogle = styled.div``;
-const IconTwitter = styled.div``;
-// fine
+
+// Icon placeholder styling
+const Icon = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: gray; // Placeholder color
+`;
 
 const Register = () => {
   return (
     <RegisterContainer>
-      <MarginCentratoRegister>
+      <CenteredContainer>
         <PaddingContainer>
-          <TitoloBenvenutoContainer>
-            <TitoloBenvenutoUser>Welcome User!</TitoloBenvenutoUser>
-            <TitoloRegistrazione>Registration</TitoloRegistrazione>
-          </TitoloBenvenutoContainer>
+          <TitleContainer>
+            <Text>Welcome User!</Text>
+            <Text>Registration</Text>
+          </TitleContainer>
           <FormContainer>
-            <InputMiniContainer>
-              <IconEmail />
-              <InputEmail placeholder="email" />
-            </InputMiniContainer>
-            <InputMiniContainer>
-              <IconUsername />
-              <InputUsername placeholder="username" />
-            </InputMiniContainer>
-            <InputMiniContainer>
-              <IconPassword />
-              <InputPassword placeholder="password" />
-              <IconShowPassword />
-            </InputMiniContainer>
-            <InputMiniContainer>
-              <IconPassword />
-              <InputPasswordConfirm placeholder="confirm password" />
-              <IconShowPassword />
-            </InputMiniContainer>
+            <InputGroup>
+              <Icon />
+              <InputField type="email" placeholder="email" />
+            </InputGroup>
+            <InputGroup>
+              <Icon />
+              <InputField type="text" placeholder="username" />
+            </InputGroup>
+            <InputGroup>
+              <Icon />
+              <InputField type="password" placeholder="password" />
+              <Icon />
+            </InputGroup>
+            <InputGroup>
+              <Icon />
+              <InputField type="password" placeholder="confirm password" />
+              <Icon />
+            </InputGroup>
             <CheckBoxContainer>
-              <CheckBoxCookie />
-              <ParagrafoCookie>
+              <CheckBox type="checkbox" />
+              <Text>
                 accetto tutte le robe brutte che possono fare con i miei dati
-              </ParagrafoCookie>
+              </Text>
             </CheckBoxContainer>
             <CheckBoxContainer>
-              <CheckBoxNewsletter />
-              <ParagrafoNewsletter>
-                Voglio ricevere le newsletter e notifiche sui nuovi post{" "}
-              </ParagrafoNewsletter>
+              <CheckBox type="checkbox" />
+              <Text>
+                Voglio ricevere le newsletter e notifiche sui nuovi post
+              </Text>
             </CheckBoxContainer>
-            <ButtonRegister>
-              <WordRegister>Register</WordRegister>
-            </ButtonRegister>
+            <ButtonRegister>Register</ButtonRegister>
           </FormContainer>
-          <ParagrafoDomandeContainer>
-            <ParagrafoDomandaAccount>
-              You have already an account?
-            </ParagrafoDomandaAccount>
-            <ParagrafoSignIn>Sign in </ParagrafoSignIn>
-          </ParagrafoDomandeContainer>
+          <CheckBoxContainer>
+            <Text>You have already an account?</Text>
+            <Text>Sign in</Text>
+          </CheckBoxContainer>
         </PaddingContainer>
-        <ParagrafoOath>or Sign Up Using</ParagrafoOath>
-        <div>
-          <IconGitHub />
-          <IconGoogle />
-          <IconTwitter />
+        <Text>or Sign Up Using</Text>
+        <div className="icons_group">
+          <Icon /> {/* Placeholder for GitHub icon */}
+          <Icon /> {/* Placeholder for Google icon */}
+          <Icon /> {/* Placeholder for Twitter icon */}
         </div>
-      </MarginCentratoRegister>
+      </CenteredContainer>
     </RegisterContainer>
   );
 };
