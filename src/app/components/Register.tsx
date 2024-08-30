@@ -2,8 +2,22 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
+//FONTAWESOME
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faUser,
+  faLock,
+  faEye,
+  faEyeSlash,
+  faCodeCompare,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faGithub,
+  faGoogle,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
-// Main container for the registration form
 const RegisterContainer = styled.div`
   background-color: rgba(116, 164, 220, 0.7);
   height: 550px;
@@ -13,7 +27,6 @@ const RegisterContainer = styled.div`
   border-bottom-right-radius: 20px;
 `;
 
-// Centering container
 const CenteredContainer = styled.div`
   margin: 0 auto;
   width: 350px;
@@ -28,7 +41,6 @@ const CenteredContainer = styled.div`
   }
 `;
 
-// Padding container to wrap components
 const PaddingContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -36,18 +48,15 @@ const PaddingContainer = styled.div`
   justify-content: space-around;
 `;
 
-// Title container
 const TitleContainer = styled.div`
   display: flex;
   gap: 10px;
 `;
 
-// Text component
 const Text = styled.p`
   margin: 0;
 `;
 
-// Form container for input fields and buttons
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -56,34 +65,33 @@ const FormContainer = styled.form`
   gap: 13px;
 `;
 
-// Input and icon wrapper
 const InputGroup = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
-  gap: 5px; // added a gap for spacing between icon and input
+  gap: 5px;
 `;
 
-// Input field styling
 const InputField = styled.input`
   background-color: transparent;
+
+  &::placeholder {
+    color: white;
+  }
 `;
 
-// Checkbox and paragraph container
 const CheckBoxContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
 `;
 
-// Checkbox styling
 const CheckBox = styled.input`
   width: 15px;
   height: 15px;
   cursor: pointer;
 `;
 
-// Button styling
 const ButtonRegister = styled.button`
   background-color: rgba(0, 128, 0, 0.5);
   color: white;
@@ -96,11 +104,10 @@ const ButtonRegister = styled.button`
   cursor: pointer;
 `;
 
-// Icon placeholder styling
 const Icon = styled.div`
   width: 20px;
   height: 20px;
-  background-color: gray; // Placeholder colord
+  background-color: gray; //
 `;
 
 const Register = () => {
@@ -112,7 +119,7 @@ const Register = () => {
     username: "idwadawd",
     first_name: "John",
     last_name: "Doe",
-    email: "sawgger@gmail.com",
+    email: "dwadawwdadaw@gmail.com",
     password: "Password123!",
   };
 
@@ -149,22 +156,22 @@ const Register = () => {
           </TitleContainer>
           <FormContainer>
             <InputGroup>
-              <Icon />
+              <FontAwesomeIcon icon={faEnvelope} />
               <InputField type="email" placeholder="email" />
             </InputGroup>
             <InputGroup>
-              <Icon />
+              <FontAwesomeIcon icon={faUser} />
               <InputField type="text" placeholder="username" />
             </InputGroup>
             <InputGroup>
-              <Icon />
+              <FontAwesomeIcon icon={faLock} />
               <InputField type="password" placeholder="password" />
-              <Icon />
+              <FontAwesomeIcon icon={faEye} />
             </InputGroup>
             <InputGroup>
-              <Icon />
+              <FontAwesomeIcon icon={faLock} />
               <InputField type="password" placeholder="confirm password" />
-              <Icon />
+              <FontAwesomeIcon icon={faEye} />
             </InputGroup>
             <CheckBoxContainer>
               <CheckBox type="checkbox" />
@@ -187,9 +194,9 @@ const Register = () => {
         </PaddingContainer>
         <Text>or Sign Up Using</Text>
         <div className="icons_group">
-          <Icon /> {/* Placeholder for GitHub icon */}
-          <Icon /> {/* Placeholder for Google icon */}
-          <Icon /> {/* Placeholder for Twitter icon */}
+          <FontAwesomeIcon icon={faGithub} />
+          <FontAwesomeIcon icon={faGoogle} />
+          <FontAwesomeIcon icon={faTwitter} />
         </div>
       </CenteredContainer>
     </RegisterContainer>
