@@ -111,16 +111,32 @@ const Icon = styled.div`
 `;
 
 const Register = () => {
-  const addOne = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const handleChange = (e: any) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const addOne = (event: any) => {
+    event.preventDefault();
     getData();
+    console.log("Dati inviati:", fintoDato); // Stampa dei dati inviati
   };
 
   const fintoDato = {
-    username: "idwadawd",
-    first_name: "John",
-    last_name: "Doe",
-    email: "dwadawwdadaw@gmail.com",
-    password: "Password123!",
+    username: formData.username,
+    first_name: "John", // non verranno usati per ora
+    last_name: "Doe", // non verranno usati per ora
+    email: formData.email,
+    password: formData.password,
   };
 
   const getData = async () => {
@@ -140,6 +156,12 @@ const Register = () => {
 
       const json = await response.json();
       console.log(json);
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     } catch (error: any) {
       console.error(error.message);
     }
@@ -157,20 +179,44 @@ const Register = () => {
           <FormContainer>
             <InputGroup>
               <FontAwesomeIcon icon={faEnvelope} />
-              <InputField type="email" placeholder="email" />
+              <InputField
+                type="email"
+                name="email"
+                placeholder="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
             </InputGroup>
             <InputGroup>
               <FontAwesomeIcon icon={faUser} />
-              <InputField type="text" placeholder="username" />
+              <InputField
+                type="text"
+                name="username"
+                placeholder="username"
+                value={formData.username}
+                onChange={handleChange}
+              />
             </InputGroup>
             <InputGroup>
               <FontAwesomeIcon icon={faLock} />
-              <InputField type="password" placeholder="password" />
+              <InputField
+                type="password"
+                name="password"
+                placeholder="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
               <FontAwesomeIcon icon={faEye} />
             </InputGroup>
             <InputGroup>
               <FontAwesomeIcon icon={faLock} />
-              <InputField type="password" placeholder="confirm password" />
+              <InputField
+                type="password"
+                name="confirmPassword"
+                placeholder="confirm password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
               <FontAwesomeIcon icon={faEye} />
             </InputGroup>
             <CheckBoxContainer>
@@ -185,7 +231,7 @@ const Register = () => {
                 Voglio ricevere le newsletter e notifiche sui nuovi post
               </Text>
             </CheckBoxContainer>
-            <ButtonRegister>Register</ButtonRegister>
+            <ButtonRegister onClick={addOne}>Register</ButtonRegister>
           </FormContainer>
           <CheckBoxContainer>
             <Text>You have already an account?</Text>
