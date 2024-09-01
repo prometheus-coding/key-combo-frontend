@@ -18,6 +18,15 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
+interface formUser {
+  username: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 const RegisterContainer = styled.div`
   background-color: rgba(116, 164, 220, 0.7);
   height: 550px;
@@ -111,8 +120,10 @@ const Icon = styled.div`
 `;
 
 const Register = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<formUser>({
     username: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -147,6 +158,7 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        // body: JSON.stringify(fintoDato),
         body: JSON.stringify(fintoDato),
       });
 
@@ -158,6 +170,8 @@ const Register = () => {
       console.log(json);
       setFormData({
         username: "",
+        first_name: "",
+        last_name: "",
         email: "",
         password: "",
         confirmPassword: "",
