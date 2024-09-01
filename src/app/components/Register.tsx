@@ -17,6 +17,8 @@ import {
   faGoogle,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { authControllerSignupLocal } from "../../../api/generated";
+import { CreateUserDto } from "../../../api/generated.schemas";
 
 interface formUser {
   username: string;
@@ -140,7 +142,7 @@ const Register = () => {
 
   const addOne = (event: any) => {
     event.preventDefault();
-    getData();
+    registerUser()
     console.log("Dati inviati:", fintoDato); // Stampa dei dati inviati
   };
 
@@ -182,6 +184,19 @@ const Register = () => {
       console.error(error.message);
     }
   };
+
+
+  //swr register logic
+  const registerUser = () => {
+    const userDto: CreateUserDto = {
+      email: formData.email,
+      username: formData.username,
+      first_name: 'test',
+      last_name: 'test',
+      password: formData.password
+    }
+    authControllerSignupLocal(userDto)
+  }
 
   return (
     <RegisterContainer>

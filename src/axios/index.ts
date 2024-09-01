@@ -1,11 +1,23 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { AxiosRequestConfig } from "axios";
+import { PROXY_BACKEND_URL } from "./constants";
 export const fetcher = (url: string) =>
     axios.get(url).then((response) => response.data);
 
 const axiosInstance = axios.create();
 
 
+const axiosInstanceRequestInterceptor = async (
+    config: InternalAxiosRequestConfig
+) => {
+    config.baseURL = PROXY_BACKEND_URL
+    config.headers.setAuthorization('')
+    return config
+}
+
+axiosInstance.interceptors.request.use(
+    axiosInstanceRequestInterceptor
+)
 
 export const customInstance = <T>(
     config: AxiosRequestConfig,
