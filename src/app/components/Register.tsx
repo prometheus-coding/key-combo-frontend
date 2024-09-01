@@ -129,6 +129,8 @@ const Register = () => {
     confirmPassword: "",
   });
 
+
+  
   const handleChange = (e: any) => {
     setFormData({
       ...formData,
