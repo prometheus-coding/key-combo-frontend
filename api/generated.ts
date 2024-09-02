@@ -21,7 +21,8 @@ import type {
   GetUsersResponseDto,
   SendNvimDataDto,
   UpdateUserScoreDto,
-  User
+  User,
+  UserResponseSignupOk
 } from './generated.schemas'
 import { customInstance } from '../src/axios/index';
 
@@ -337,7 +338,7 @@ export const useNvimPluginControllerSendScore = <TError = unknown>(
 export const authControllerSignupLocal = (
     createUserDto: CreateUserDto,
  options?: SecondParameter<typeof customInstance>) => {
-    return customInstance<void>(
+    return customInstance<UserResponseSignupOk>(
     {url: `/api/v1/auth/local/signup`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: createUserDto
@@ -348,7 +349,7 @@ export const authControllerSignupLocal = (
 
 
 export const getAuthControllerSignupLocalMutationFetcher = ( options?: SecondParameter<typeof customInstance>) => {
-  return (_: Key, { arg }: { arg: CreateUserDto }): Promise<void> => {
+  return (_: Key, { arg }: { arg: CreateUserDto }): Promise<UserResponseSignupOk> => {
     return authControllerSignupLocal(arg, options);
   }
 }

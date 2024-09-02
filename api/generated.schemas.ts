@@ -5,6 +5,32 @@
  * The K-Combo REST API description
  * OpenAPI spec version: 1.0
  */
+export interface CreatedUserDto {
+  /** The access token for the user */
+  access_token: string;
+  /** The username of the user */
+  email: string;
+  /** The first name of the user */
+  first_name: string;
+  /** The last name of the user */
+  last_name: string;
+  /** The refresh token for the user */
+  refresh_token: string;
+  /** The username of the user */
+  username: string;
+  /** The last name of the user */
+  vimToken: string;
+}
+
+export interface UserResponseSignupOk {
+  /** The details of the created user */
+  data: CreatedUserDto;
+  /** The user creation message */
+  message: string;
+  /** The HTTP status code */
+  status: number;
+}
+
 export interface SendNvimDataDto {
   /** The id token string */
   id_token: string;

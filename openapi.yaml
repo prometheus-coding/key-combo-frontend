@@ -126,6 +126,10 @@ paths:
       responses:
         '201':
           description: The user has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponseSignupOk'
       tags:
         - Auth
   /api/v1/auth/local/signin:
@@ -223,7 +227,7 @@ components:
         achieved_at:
           format: date-time
           type: string
-          example: 2024-09-02T09:35:21.111Z
+          example: 2024-09-02T10:11:04.519Z
           description: When the score was achieved
       required:
         - score
@@ -370,3 +374,61 @@ components:
       required:
         - id_token
         - total_key_pressed
+    CreatedUserDto:
+      type: object
+      properties:
+        username:
+          type: string
+          example: john_doe
+          description: The username of the user
+        email:
+          type: string
+          example: john_doe@email.com
+          description: The username of the user
+        first_name:
+          type: string
+          example: John
+          description: The first name of the user
+        last_name:
+          type: string
+          example: Doe
+          description: The last name of the user
+        vimToken:
+          type: string
+          example: Token used for vim
+          description: The last name of the user
+        access_token:
+          type: string
+          example: someAccessToken12345
+          description: The access token for the user
+        refresh_token:
+          type: string
+          example: someRefreshToken12345
+          description: The refresh token for the user
+      required:
+        - username
+        - email
+        - first_name
+        - last_name
+        - vimToken
+        - access_token
+        - refresh_token
+    UserResponseSignupOk:
+      type: object
+      properties:
+        message:
+          type: string
+          example: User signed up successfully
+          description: The user creation message
+        status:
+          type: number
+          example: 200
+          description: The HTTP status code
+        data:
+          description: The details of the created user
+          allOf:
+            - $ref: '#/components/schemas/CreatedUserDto'
+      required:
+        - message
+        - status
+        - data
