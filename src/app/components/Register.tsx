@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 //FONTAWESOME
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,6 +17,8 @@ import {
   faGoogle,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { authControllerSignupLocal, usersControllerFindAll, useUsersControllerFindAll } from "../../../api/generated";
+import { CreateUserDto } from "../../../api/generated.schemas";
 
 interface formUser {
   username: string;
@@ -120,7 +122,7 @@ const Icon = styled.div`
 `;
 
 const Register = () => {
-  const [formData, setFormData] = useState<formUser>({
+  const [formData, setFormData] = useState({
     username: "",
     first_name: "",
     last_name: "",
@@ -129,6 +131,8 @@ const Register = () => {
     confirmPassword: "",
   });
 
+
+  
   const handleChange = (e: any) => {
     setFormData({
       ...formData,
@@ -138,48 +142,74 @@ const Register = () => {
 
   const addOne = (event: any) => {
     event.preventDefault();
-    getData();
-    console.log("Dati inviati:", fintoDato); // Stampa dei dati inviati
+    registerUser()
+    console.log("Dati inviati:"); // Stampa dei dati inviati
   };
 
-  const fintoDato = {
-    username: formData.username,
-    first_name: "John", // non verranno usati per ora
-    last_name: "Doe", // non verranno usati per ora
-    email: formData.email,
-    password: formData.password,
-  };
-
-  const getData = async () => {
-    const url = "http://localhost:3001/api/v1/auth/local/signup";
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        // body: JSON.stringify(fintoDato),
-        body: JSON.stringify(fintoDato),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
+    //swr register logic
+    const registerUser = async () => {
+      const userDto: CreateUserDto = {
+        email: formData.email,
+        username: formData.username,
+        first_name: 'test',
+        last_name: 'test',
+        password: formData.password
       }
-
-      const json = await response.json();
-      console.log(json);
-      setFormData({
-        username: "",
-        first_name: "",
-        last_name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-    } catch (error: any) {
-      console.error(error.message);
+      const tokens = await authControllerSignupLocal(userDto)
+      console.log(tokens)
     }
-  };
+
+    const {data, error, isLoading} = useUsersControllerFindAll()
+
+    if(isLoading) console.log('sto caricando. wait')
+
+    if(data){
+      console.log(data)
+    }
+  
+
+
+
+  // const fintoDato = {
+  //   username: formData.username,
+  //   first_name: "John", // non verranno usati per ora
+  //   last_name: "Doe", // non verranno usati per ora
+  //   email: formData.email,
+  //   password: formData.password,
+  // };
+
+  // const getData = async () => {
+  //   const url = "http://localhost:3001/api/v1/auth/local/signup";
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       // body: JSON.stringify(fintoDato),
+  //       body: JSON.stringify(fintoDato),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error(`Response status: ${response.status}`);
+  //     }
+
+  //     const json = await response.json();
+  //     console.log(json);
+  //     setFormData({
+  //       username: "",
+  //       first_name: "",
+  //       last_name: "",
+  //       email: "",
+  //       password: "",
+  //       confirmPassword: "",
+  //     });
+  //   } catch (error: any) {
+  //     console.error(error.message);
+  //   }
+  // };
+
+
 
   return (
     <RegisterContainer>
