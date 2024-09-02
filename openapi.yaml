@@ -96,6 +96,20 @@ paths:
           description: User retrieved successfully
       tags:
         - users
+  /api/v1/users/getAllUsersBestScore:
+    get:
+      operationId: UsersController_getAllUserBestScore
+      summary: Get all the best scores from all users
+      parameters: []
+      responses:
+        '201':
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserScoreDto'
+      tags:
+        - users
   /api/v1/nvim-plugin/sendScore:
     post:
       operationId: NvimPluginController_sendScore
@@ -227,7 +241,7 @@ components:
         achieved_at:
           format: date-time
           type: string
-          example: 2024-09-02T10:11:04.519Z
+          example: 2024-09-02T19:57:19.363Z
           description: When the score was achieved
       required:
         - score
@@ -312,7 +326,7 @@ components:
         score_updated_at:
           format: date-time
           type: string
-          example: '2023-08-01T12:00:00Z'
+          example: 1725307039508
           description: Combo updated at
       required:
         - id_token
@@ -359,6 +373,21 @@ components:
       required:
         - email
         - password
+    UserScoreDto:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Dimanet.com
+          description: The username of the user
+        bestScore:
+          description: the best score of the user
+          type: array
+          items:
+            $ref: '#/components/schemas/ScoreInfo'
+      required:
+        - username
+        - bestScore
     sendNvimDataDto:
       type: object
       properties:

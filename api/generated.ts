@@ -22,7 +22,8 @@ import type {
   SendNvimDataDto,
   UpdateUserScoreDto,
   User,
-  UserResponseSignupOk
+  UserResponseSignupOk,
+  UserScoreDto
 } from './generated.schemas'
 import { customInstance } from '../src/axios/index';
 
@@ -279,6 +280,45 @@ export const useUsersControllerGetUserDataFromTokenId = <TError = unknown>(
   const swrFn = getUsersControllerGetUserDataFromTokenIdMutationFetcher(requestOptions);
 
   const query = useSWRMutation(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+
+/**
+ * @summary Get all the best scores from all users
+ */
+export const usersControllerGetAllUserBestScore = (
+    
+ options?: SecondParameter<typeof customInstance>) => {
+    return customInstance<UserScoreDto>(
+    {url: `/api/v1/users/getAllUsersBestScore`, method: 'GET'
+    },
+    options);
+  }
+
+
+
+export const getUsersControllerGetAllUserBestScoreKey = () => [`/api/v1/users/getAllUsersBestScore`] as const;
+
+export type UsersControllerGetAllUserBestScoreQueryResult = NonNullable<Awaited<ReturnType<typeof usersControllerGetAllUserBestScore>>>
+export type UsersControllerGetAllUserBestScoreQueryError = unknown
+
+/**
+ * @summary Get all the best scores from all users
+ */
+export const useUsersControllerGetAllUserBestScore = <TError = unknown>(
+   options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof usersControllerGetAllUserBestScore>>, TError> & { swrKey?: Key, enabled?: boolean }, request?: SecondParameter<typeof customInstance> }
+) => {
+  const {swr: swrOptions, request: requestOptions} = options ?? {}
+
+  const isEnabled = swrOptions?.enabled !== false
+  const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getUsersControllerGetAllUserBestScoreKey() : null);
+  const swrFn = () => usersControllerGetAllUserBestScore(requestOptions)
+
+  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
 
   return {
     swrKey,

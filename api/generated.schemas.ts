@@ -80,6 +80,13 @@ export interface ScoreInfo {
   total_key_pressed: number;
 }
 
+export interface UserScoreDto {
+  /** the best score of the user */
+  bestScore: ScoreInfo[];
+  /** The username of the user */
+  username: string;
+}
+
 export interface SchemaObjectId { [key: string]: unknown }
 
 export interface User {
