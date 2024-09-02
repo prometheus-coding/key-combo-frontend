@@ -1,361 +1,372 @@
-  openapi: 3.0.0
-  paths:
-    /api/v1:
-      get:
-        operationId: AppController_getHello
-        parameters: []
-        responses:
-          "200":
-            description: ""
-    /api/v1/users:
-      post:
-        operationId: UsersController_create
-        summary: Create a new user
-        parameters: []
-        requestBody:
-          required: true
+openapi: 3.0.0
+paths:
+  /api/v1:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/v1/users:
+    post:
+      operationId: UsersController_create
+      summary: Create a new user
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: The user has been successfully created.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CreateUserDto"
-        responses:
-          "201":
-            description: The user has been successfully created.
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/User"
-        tags:
-          - users
-      get:
-        operationId: UsersController_findAll
-        summary: Get all users
-        parameters: []
-        responses:
-          "200":
-            description: Return all users.
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/GetUsersResponseDto"
-        tags:
-          - users
-    /api/v1/users/updateUserScore:
-      post:
-        operationId: UsersController_updateUserScore
-        summary: Create a new user
-        parameters: []
-        requestBody:
-          required: true
+                $ref: '#/components/schemas/User'
+      tags:
+        - users
+    get:
+      operationId: UsersController_findAll
+      summary: Get all users
+      parameters: []
+      responses:
+        '200':
+          description: Return all users.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UpdateUserScoreDto"
-        responses:
-          "201":
-            description: The user has been successfully created.
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/User"
-        tags:
-          - users
-    /api/v1/users/getUserByEmail:
-      post:
-        operationId: UsersController_findByEmail
-        summary: Get user by email
-        parameters: []
-        requestBody:
-          required: true
+                $ref: '#/components/schemas/GetUsersResponseDto'
+      tags:
+        - users
+  /api/v1/users/updateUserScore:
+    post:
+      operationId: UsersController_updateUserScore
+      summary: Create a new user
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserScoreDto'
+      responses:
+        '201':
+          description: The user has been successfully created.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/AuthDto"
-        responses:
-          "200":
-            description: Get user by email
-            content:
-              application/json:
-                schema:
-                  $ref: "#/components/schemas/GetUsersResponseDto"
-        tags:
-          - users
-    /api/v1/users/getUserFromTokenId:
-      post:
-        operationId: UsersController_getUserDataFromTokenId
-        summary: Get user data from token
-        parameters: []
-        requestBody:
-          required: true
+                $ref: '#/components/schemas/User'
+      tags:
+        - users
+  /api/v1/users/getUserByEmail:
+    post:
+      operationId: UsersController_findByEmail
+      summary: Get user by email
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthDto'
+      responses:
+        '200':
+          description: Get user by email
           content:
             application/json:
               schema:
-                type: string
-        responses:
-          "201":
-            description: User retrieved successfully
-        tags:
-          - users
-    /api/v1/nvim-plugin/sendScore:
-      post:
-        operationId: NvimPluginController_sendScore
-        summary: Retrieve nvim score data
-        parameters: []
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/sendNvimDataDto"
-        responses:
-          "201":
-            description: The user has been successfully created.
-        tags:
-          - nvim
-    /api/v1/auth/local/signup:
-      post:
-        operationId: AuthController_signupLocal
-        summary: Create a new user with signup
-        parameters: []
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateUserDto"
-        responses:
-          "201":
-            description: The user has been successfully created.
-        tags:
-          - Auth
-    /api/v1/auth/local/signin:
-      post:
-        operationId: AuthController_signinLocal
-        parameters: []
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/AuthDto"
-        responses:
-          "200":
-            description: ""
-        tags:
-          - Auth
-    /api/v1/auth/logout:
-      post:
-        operationId: AuthController_logout
-        parameters: []
-        responses:
-          "200":
-            description: ""
-        tags:
-          - Auth
-    /api/v1/auth/refresh:
-      post:
-        operationId: AuthController_refreshTokens
-        parameters: []
-        responses:
-          "201":
-            description: ""
-        tags:
-          - Auth
-  info:
-    title: K-Combo API
-    description: The K-Combo REST API description
-    version: "1.0"
-    contact: {}
-  tags: []
-  servers: []
-  components:
-    schemas:
-      CreateUserDto:
-        type: object
-        properties:
-          username:
-            type: string
-            example: xXjohndoeXx_swaggerITA
-            description: The username of the user
-          first_name:
-            type: string
-            example: John
-            description: The name of the user
-          last_name:
-            type: string
-            example: Doe
-            description: The second name of the user
-          email:
-            type: string
-            example: john@example.com
-            description: The email of the user
-          password:
-            type: string
-            example: Password123!
-            description: The password of the user
-        required:
-          - username
-          - first_name
-          - last_name
-          - email
-          - password
-      SchemaObjectId:
-        type: object
-        properties: {}
-      ScoreInfo:
-        type: object
-        properties:
-          score:
-            type: number
-            example: 0
-            description: The score of the user
-            default: 0
-          combo_duration_in_seconds:
-            type: number
-            example: 0
-            description: The combo duration in seconds
-            default: 0
-          total_key_pressed:
-            type: number
-            example: 0
-            description: The total number of keys pressed
-            default: 0
-          achieved_at:
-            format: date-time
-            type: string
-            example: "2024-09-01T15:33:21.197Z"
-            description: When the score was achieved
-        required:
-          - score
-          - combo_duration_in_seconds
-          - total_key_pressed
-          - achieved_at
-      User:
-        type: object
-        properties:
-          _id:
-            example: 66b77f4dcce779e05c65018f
-            description: The unique identifier for the user
-            allOf:
-              - $ref: "#/components/schemas/SchemaObjectId"
-          username:
-            type: string
-            example: johndoe
-            description: The username of the user
-          first_name:
-            type: string
-            example: John
-            description: The first name of the user
-          last_name:
-            type: string
-            example: Doe
-            description: The last name of the user
-          email:
-            type: string
-            example: john@example.com
-            description: The email of the user
-          password:
-            type: string
-            example: password123
-            description: The password of the user
-          id_token:
-            type: string
-          refreshToken:
-            type: string
-          accessToken:
-            type: string
-          scores:
-            description: The score history of the user
-            type: array
-            items:
-              $ref: "#/components/schemas/ScoreInfo"
-          created_at:
-            format: date-time
-            type: string
-            example: "2023-08-01T12:00:00Z"
-            description: The creation date of the user
-        required:
-          - _id
-          - username
-          - first_name
-          - last_name
-          - email
-          - password
-          - id_token
-          - refreshToken
-          - accessToken
-          - scores
-          - created_at
-      UpdateUserScoreDto:
-        type: object
-        properties:
-          id_token:
-            type: number
-            example: 540744b5db13f84b94d66ba0db84d09b79ff873bc67f69f97fb3c2880551133c
-            description: The unique user id_token
-          score:
-            type: number
-            example: 12034
-            description: The new set score
-          combo_duration_in_seconds:
-            type: number
-            example: 10
-            description: The duration of the combo expressed in seconds
-          total_key_pressed:
-            type: number
-            example: 120
-            description: The total number of key pressed during the combo
-          score_updated_at:
-            format: date-time
-            type: string
-            example: "2023-08-01T12:00:00Z"
-            description: Combo updated at
-        required:
-          - id_token
-          - score
-          - combo_duration_in_seconds
-          - total_key_pressed
-          - score_updated_at
-      GetUsersResponseDto:
-        type: object
-        properties:
-          users:
-            description: Array of users
-            type: array
-            items:
-              $ref: "#/components/schemas/User"
-          count:
-            type: number
-            example: 10
-            description: Number of users returned
-        required:
-          - users
-          - count
-      AuthDto:
-        type: object
-        properties:
-          email:
-            type: string
-            example: john@example.com
-            description: The user email
-          password:
-            type: string
-            example: Password123!
-            description: The user password
-        required:
-          - email
-          - password
-      sendNvimDataDto:
-        type: object
-        properties:
-          id_token:
-            type: string
-            example: jbf764e4d99991
-            description: The user's token
-          score:
-            type: number
-            example: 120
-            description: The score of the user
-        required:
-          - id_token
-          - score
+                $ref: '#/components/schemas/GetUsersResponseDto'
+      tags:
+        - users
+  /api/v1/users/getUserFromTokenId:
+    post:
+      operationId: UsersController_getUserDataFromTokenId
+      summary: Get user data from token
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        '201':
+          description: User retrieved successfully
+      tags:
+        - users
+  /api/v1/nvim-plugin/sendScore:
+    post:
+      operationId: NvimPluginController_sendScore
+      summary: Retrieve nvim score data
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sendNvimDataDto'
+      responses:
+        '201':
+          description: The user has been successfully created.
+      tags:
+        - nvim
+  /api/v1/auth/local/signup:
+    post:
+      operationId: AuthController_signupLocal
+      summary: Create a new user with signup
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: The user has been successfully created.
+      tags:
+        - Auth
+  /api/v1/auth/local/signin:
+    post:
+      operationId: AuthController_signinLocal
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthDto'
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
+  /api/v1/auth/logout:
+    post:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
+  /api/v1/auth/refresh:
+    post:
+      operationId: AuthController_refreshTokens
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - Auth
+info:
+  title: K-Combo API
+  description: The K-Combo REST API description
+  version: '1.0'
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateUserDto:
+      type: object
+      properties:
+        username:
+          type: string
+          example: xXjohndoeXx_swaggerITA
+          description: The username of the user
+        first_name:
+          type: string
+          example: John
+          description: The name of the user
+        last_name:
+          type: string
+          example: Doe
+          description: The second name of the user
+        email:
+          type: string
+          example: john@example.com
+          description: The email of the user
+        password:
+          type: string
+          example: Password123!
+          description: The password of the user
+      required:
+        - username
+        - first_name
+        - last_name
+        - email
+        - password
+    SchemaObjectId:
+      type: object
+      properties: {}
+    ScoreInfo:
+      type: object
+      properties:
+        score:
+          type: number
+          example: 0
+          description: The score of the user
+          default: 0
+        combo_duration_in_seconds:
+          type: number
+          example: 0
+          description: The combo duration in seconds
+          default: 0
+        total_key_pressed:
+          type: number
+          example: 0
+          description: The total number of keys pressed
+          default: 0
+        achieved_at:
+          format: date-time
+          type: string
+          example: 2024-09-02T09:35:21.111Z
+          description: When the score was achieved
+      required:
+        - score
+        - combo_duration_in_seconds
+        - total_key_pressed
+        - achieved_at
+    User:
+      type: object
+      properties:
+        _id:
+          example: 66b77f4dcce779e05c65018f
+          description: The unique identifier for the user
+          allOf:
+            - $ref: '#/components/schemas/SchemaObjectId'
+        username:
+          type: string
+          example: johndoe
+          description: The username of the user
+        first_name:
+          type: string
+          example: John
+          description: The first name of the user
+        last_name:
+          type: string
+          example: Doe
+          description: The last name of the   user
+        email:
+          type: string
+          example: john@example.com
+          description: The email of the user
+        password:
+          type: string
+          example: password123
+          description: The password of the user
+        id_token:
+          type: string
+        refreshToken:
+          type: string
+        accessToken:
+          type: string
+        scores:
+          description: The score history of the user
+          type: array
+          items:
+            $ref: '#/components/schemas/ScoreInfo'
+        created_at:
+          format: date-time
+          type: string
+          example: '2023-08-01T12:00:00Z'
+          description: The creation date of the user
+      required:
+        - _id
+        - username
+        - first_name
+        - last_name
+        - email
+        - password
+        - id_token
+        - refreshToken
+        - accessToken
+        - scores
+        - created_at
+    UpdateUserScoreDto:
+      type: object
+      properties:
+        id_token:
+          type: number
+          example: 540744b5db13f84b94d66ba0db84d09b79ff873bc67f69f97fb3c2880551133c
+          description: The unique user id_token
+        score:
+          type: number
+          example: 12034
+          description: The new set score
+        combo_duration_in_seconds:
+          type: number
+          example: 10
+          description: The duration of the combo expressed in seconds
+        total_key_pressed:
+          type: number
+          example: 120
+          description: The total number of key pressed during the combo
+        score_updated_at:
+          format: date-time
+          type: string
+          example: '2023-08-01T12:00:00Z'
+          description: Combo updated at
+      required:
+        - id_token
+        - score
+        - combo_duration_in_seconds
+        - total_key_pressed
+        - score_updated_at
+    GetUsersResponseDto:
+      type: object
+      properties:
+        status:
+          type: number
+          example: 200
+          description: Array of users
+        message:
+          type: string
+          example: Users retrieved successfully
+          description: Array of users
+        data:
+          description: Array of users
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        count:
+          type: number
+          example: 10
+          description: Number of users returned
+      required:
+        - status
+        - message
+        - data
+        - count
+    AuthDto:
+      type: object
+      properties:
+        email:
+          type: string
+          example: john@example.com
+          description: The user email
+        password:
+          type: string
+          example: Password123!
+          description: The user password
+      required:
+        - email
+        - password
+    sendNvimDataDto:
+      type: object
+      properties:
+        id_token:
+          type: string
+          example: jbf764e4d1e299b00d6f4be2a8a2c1461a7d4ca02c9121bf82dcb897322358e3b
+          description: The id token string
+        total_key_pressed:
+          type: number
+          example: 1000
+          description: The total number of keys pressed in new combo
+          default: 0
+      required:
+        - id_token
+        - total_key_pressed

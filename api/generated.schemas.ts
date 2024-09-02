@@ -6,10 +6,10 @@
  * OpenAPI spec version: 1.0
  */
 export interface SendNvimDataDto {
-  /** The user's token */
+  /** The id token string */
   id_token: string;
-  /** The score of the user */
-  score: number;
+  /** The total number of keys pressed in new combo */
+  total_key_pressed: number;
 }
 
 export interface AuthDto {
@@ -23,7 +23,11 @@ export interface GetUsersResponseDto {
   /** Number of users returned */
   count: number;
   /** Array of users */
-  users: User[];
+  data: User[];
+  /** Array of users */
+  message: string;
+  /** Array of users */
+  status: number;
 }
 
 export interface UpdateUserScoreDto {
@@ -63,7 +67,7 @@ export interface User {
   /** The first name of the user */
   first_name: string;
   id_token: string;
-  /** The last name of the user */
+  /** The last name of the   user */
   last_name: string;
   /** The password of the user */
   password: string;
